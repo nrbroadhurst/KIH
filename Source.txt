@@ -1,0 +1,363 @@
+#-----------------------------------------------------------------------------------------------------------------------------
+# Name:         Source
+# Purpose:      Sources default MXD for IFC and encroachment drawings
+# Author:       Nick Broadhurst 
+# Date:         03 March 2017
+# Updates:
+    ##### - 02 May 2017
+    # - Fixes broken domains on the poles feature for fields [OWNER] and [SlackSpan]
+    ##### - 03 May 2017
+    # - Changes segement text element to source parameter
+    ##### - 22 May 2017
+    # - Changes definition queries to reflect source parameter
+#-----------------------------------------------------------------------------------------------------------------------------
+#Import module
+import arcpy
+
+#Define parameter
+segment = arcpy.GetParameterAsText(0)
+
+#Structure
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'STRUCTURE_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'STRUCTURE_SITEID_'    
+newLayerName = 'STRUCTURE_SITEID_' 
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment) 
+arcpy.AddMessage("Structure sourced")
+
+#ConstructionTaskPoint
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'ConstructionTaskPoint_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'ConstructionTaskPoint_SITEID_'  
+newLayerName = 'ConstructionTaskPoint_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#ConstructionTaskPoint sourced")
+
+#Pole
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'POLE_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'POLE_SITEID_'  
+newLayerName = 'POLE_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Poles sourced")
+
+#Cartography
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'CARTOGRAPHY_FIBER_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'CARTOGRAPHY_FIBER_SITEID_'  
+newLayerName = 'CARTOGRAPHY_FIBER_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Cartography line sourced")		
+
+#Riser
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'RISER_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'RISER_SITEID_'  
+newLayerName = 'RISER_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Riser sourced")
+		
+#Slackloop
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'SLACKLOOP_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'SLACKLOOP_SITEID_'  
+newLayerName = 'SLACKLOOP_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Slackloop sourced")
+
+#Anchorguy
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'ANCHORGUY_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'ANCHORGUY_SITEID_'  
+newLayerName = 'ANCHORGUY_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Anchorguy sourced")		
+
+#Consttestpit
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'CONSTTESTPIT_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'CONSTTESTPIT_SITEID_'  
+newLayerName = 'CONSTTESTPIT_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Consttestpit sourced")		
+
+#Building
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'BUILDING_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'BUILDING_SITEID_'  
+newLayerName = 'BUILDING_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Building sourced")
+
+#Groundingbond
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'GROUNDINGBOND_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'GROUNDINGBOND_SITEID_'  
+newLayerName = 'GROUNDINGBOND_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)		
+arcpy.AddMessage("#Groundingbond sourced")
+
+#SpecialCrossings
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'SPECIALCROSSINGS_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'SPECIALCROSSINGS_SITEID_'  
+newLayerName = 'SPECIALCROSSINGS_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#SpecialCrossings sourced")
+		
+#Spliceclosure
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'SPLICECLOSURE_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'SPLICECLOSURE_SITEID_'  
+newLayerName = 'SPLICECLOSURE_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Spliceclosure sourced")		
+
+#Fibercable
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'FIBERCABLE_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'FIBERCABLE_SITEID_'  
+newLayerName = 'FIBERCABLE_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Fibercable sourced")		
+
+#Conduit
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'CONDUIT_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'CONDUIT_SITEID_'  
+newLayerName = 'CONDUIT_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#Conduit sourced")
+
+#Strand
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'STRAND_SITEID_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'STRAND_SITEID_'  
+newLayerName = 'STRAND_SITEID_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.RefreshTOC()
+arcpy.AddMessage("#Strand sourced")
+
+#Anchorguy_line
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'ANCHORGUY_SITEID_12_line' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb' 
+newFCName = 'ANCHORGUY_SITEID_'  
+newLayerName = 'ANCHORGUY_SITEID_'  
+line = '_line'
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment)+(line), True)
+        layer.name = newLayerName+str(segment)+(line)
+arcpy.AddMessage("#Anchorguy_line sourced")
+
+#BOM
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'BOM_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\BOM.gdb' 
+newFCName = 'BOM_'  
+newLayerName = 'BOM_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)
+arcpy.AddMessage("#BOM sourced")
+
+#Dimensioning
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'SITE_12' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Dimensioning.gdb' 
+newFCName = 'SITE_'  
+newLayerName = 'SITE_'  
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment), True)
+        layer.name = newLayerName+str(segment)+"_Dimensions"
+arcpy.AddMessage("#Dimension FC sourced")
+
+#Route creation line
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'FIBER_12_RC' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Route Creation Line.gdb' 
+newFCName = 'FIBER_'  
+newLayerName = 'FIBER_'  
+_RC = '_RC'
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment)+"_RC", True)
+        layer.name = newLayerName+str(segment)+(_RC)
+arcpy.AddMessage("#Route creation line sourced")
+
+#Adjusted frames
+mxd = arcpy.mapping.MapDocument("CURRENT")
+layers = arcpy.mapping.ListLayers(mxd)
+oldLayerName = 'Seg_12_adjusted' 
+myGDB = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\DDP_FRAMES.gdb' 
+newFCName = 'Seg_'  
+newLayerName = 'Seg_'  
+adjusted = '_adjusted'
+
+for layer in layers:
+    if layer.name == oldLayerName:
+        layer.replaceDataSource(myGDB, "FILEGDB_WORKSPACE", newFCName+str(segment)+"_adjusted", True)
+        layer.name = newLayerName+str(segment)+(adjusted)
+arcpy.RefreshTOC()
+arcpy.AddMessage("#Frames sourced")
+arcpy.AddMessage("#Reassigning domain on broken fields...")
+
+#Set workspace
+from arcpy import env
+env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb'
+
+#Create variables for pole
+in_table = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\18DDP_ENG\Design_Data.gdb\POLE_SITEID_' + segment
+
+#Assign domain for owner and slackspan
+arcpy.AssignDomainToField_management(in_table, "OWNER", "PoleOwner_Text1")
+arcpy.AssignDomainToField_management(in_table, "SlackSpan", "YesNo_1")
+arcpy.AddMessage("#Reassigned domain on broken fields")
+
+#Change segment number
+for textElement in arcpy.mapping.ListLayoutElements(mxd, "TEXT_ELEMENT"):
+     if textElement.text == "SEGMENT 12":
+         textElement.text = "SEGMENT " + str(segment)
+arcpy.RefreshActiveView
+
+#Create variable for anchorline
+#aLine = 'ANCHORGUY_SITEID_' + str(segment)
+#aLine2 = 'ANCHORGUY_SITEID_' + str(segment) + "_2" 
+#arcpy.AddMessage("#Calculating geometry for lat/long...")
+
+#Calcualte geometry for lat/long
+
+#arcpy.AddMessage("#Calculated geometry for lat/long")
+
+#Make copy of anchorline
+#arcpy.CopyFeatures_management(aLine, aLine2)
+#arcpy.AddMessage("#ANCHORGUY copied")
+
+#Delete Anchor_line_2
+#arcpy.Delete_management(aLine, "FeatureClass")
+#arcpy.AddMessage("#ANCHORGUY deleted")
+#arcpy.AddMessage("#Running BearingDistanceToLine tool...")
+
+#Fix anchorline
+#arcpy.BearingDistanceToLine_management(aLine2, aLine, "LONG", "LAT", "ll", "9002", "ROTATION", "9102", "0", "", "GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]];-400 -400 1000000000;-100000 10000;-100000 10000;8.98315284119522E-09;0.001;0.001;IsHighPrecision")
+#arcpy.AddMessage("#BearingDistanceToLine tool successful")
+
+#Set definition queries 
+arcpy.AddMessage("#Set Definition Queries")
+for lyr in arcpy.mapping.ListLayers(mxd):
+	if lyr.name == "STRUCTURE":
+		lyr.definitionQuery = "INVENTORY_STATUS_CODE <> 'Abandoned' OR SITE_ID <> " + segment 
+	if lyr.name == "GroundingBond":
+		lyr.definitionQuery = "Site_ID <> " + "'" + segment + "'"  
+	if lyr.name == "SPLICECLOSURE":
+		lyr.definitionQuery = "SITE_ID <> " + segment + " OR PLACEMENTTYPE <> 0"
+	if lyr.name == "POLE":
+		lyr.definitionQuery = "INVENTORY_STATUS_CODE <> 'Abandoned' AND SITE_ID <> " + segment 
+	if lyr.name == "SLACKLOOP":
+		lyr.definitionQuery = "SITE_ID <> " + segment
+	if lyr.name == "RISER":
+		lyr.definitionQuery = "SITE_ID <> " + segment
+	if lyr.name == "FIBERCABLE":
+		lyr.definitionQuery = "SITE_ID <> " + segment
+	if lyr.name == "STRAND":
+		lyr.definitionQuery = "SITE_ID <> " + segment 
