@@ -1,0 +1,52 @@
+#-----------------------------------------------------------------------------------------------------------------------------
+# Name:         Assign reel ID
+# Purpose:      Assign reel ID to poles/fiber & Sequence Poles
+# Author:       Nick Broadhurst 
+# Date:         18 September 2017
+#-----------------------------------------------------------------------------------------------------------------------------
+import arcpy
+spliceclosure = arcpy.GetParameterAsText(0)
+fiber = arcpy.GetParameterAsText(1)
+rcline = arcpy.GetParameterAsText(2)
+poles = arcpy.GetParameterAsText(3)
+segment = arcpy.GetParameterAsText(4)
+
+arcpy.env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\ToolBox\Reel_ID.gdb'
+arcpy.env.overwriteOutput=True
+
+arcpy.Snap_edit(spliceclosure, [[fiber, "EDGE", "1000 Meters"]])
+arcpy.SplitLineAtPoint_management(fiber, spliceclosure, "Splitfiber" + str(segment), "1000 Meters")
+arcpy.Snap_edit(spliceclosure, [["Splitfiber" + str(segment), "EDGE", "1000 Meters"]])
+arcpy.FeatureToPoint_management("Splitfiber" + str(segment), "Fibercentroid" + str(segment), "INSIDE")
+arcpy.LocateFeaturesAlongRoutes_lr("Fibercentroid" + str(segment), rcline, "SITE_ID", "1000 Meters", "Pointtablefiber" + str(segment), "SITE_ID POINT fmp")  
+arcpy.MakeRouteEventLayer_lr(rcline, "SITE_ID", "Pointtablefiber" + str(segment), "SITE_ID POINT fmp", "POINTSEQfiber" + str(segment))
+arcpy.Sort_management("POINTSEQfiber" + str(segment), "Centroidseq" + str(segment), [["fmp", "ASCENDING"]])
+arcpy.Snap_edit("centroidseq" + str(segment), [["Splitfiber" + str(segment), "EDGE", "1000 Meters"]])
+arcpy.SpatialJoin_analysis("Splitfiber" + str(segment), "Centroidseq" + str(segment), "fiberjoin" + str(segment), "JOIN_ONE_TO_ONE")
+arcpy.Sort_management("fiberjoin" + str(segment), "fiberjoinseq" + str(segment), [["fmp", "ASCENDING"]])
+arcpy.AddField_management("fiberjoinseq" + str(segment), "REEL_ID", "TEXT")
+arcpy.CalculateField_management("fiberjoinseq" + str(segment), "REEL_ID", "[SITE_ID] & \" - \" & [OBJECTID]", "VB", "")
+arcpy.Snap_edit(poles, [["fiberjoinseq" + str(segment), "EDGE", "5000 Meters"]])
+arcpy.SpatialJoin_analysis(poles, "fiberjoinseq" + str(segment), "polejoinseq" + str(segment), "JOIN_ONE_TO_ONE")
+arcpy.LocateFeaturesAlongRoutes_lr("polejoinseq" + str(segment), rcline, "SITE_ID", "1000 Meters", "poletable" + str(segment), "SITE_ID POINT fmp") 
+arcpy.MakeRouteEventLayer_lr(rcline, "SITE_ID", "poletable" + str(segment), "SITE_ID POINT fmp", "polejoinseq1" + str(segment))
+arcpy.Sort_management("polejoinseq1" + str(segment), "polejoinseq" + str(segment), [["fmp", "ASCENDING"]])
+arcpy.AddField_management("polejoinseq" + str(segment), "SEQ", "TEXT")
+arcpy.CalculateField_management("polejoinseq" + str(segment), "SEQ", "[OBJECTID]")
+
+arcpy.Delete_management("Centroidseq" + str(segment)) 
+arcpy.Delete_management("Fibercentroid" + str(segment)) 
+arcpy.Delete_management("fiberjoin" + str(segment)) 
+arcpy.Delete_management("Splitfiber" + str(segment)) 
+
+
+ 
+
+	
+	
+	
+	
+	
+
+
+ 
