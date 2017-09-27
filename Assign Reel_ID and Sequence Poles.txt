@@ -4,6 +4,7 @@
 # Author:       Nick Broadhurst 
 # Date:         18 September 2017
 #-----------------------------------------------------------------------------------------------------------------------------
+#Import module and callout variables/parameters 
 import arcpy
 spliceclosure = arcpy.GetParameterAsText(0)
 fiber = arcpy.GetParameterAsText(1)
@@ -11,10 +12,10 @@ rcline = arcpy.GetParameterAsText(2)
 poles = arcpy.GetParameterAsText(3)
 segment = arcpy.GetParameterAsText(4)
 fclist = ["Centroidseq" + str(segment), "Fibercentroid" + str(segment), "fiberjoin" + str(segment), "Splitfiber" + str(segment), "Pointtablefiber" + str(segment), "poletable" + str(segment)]
-
 arcpy.env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\ToolBox\Reel_ID_Dustin.gdb'
 arcpy.env.overwriteOutput=True
 
+#Assign reel ID and sequence poles
 arcpy.Snap_edit(spliceclosure, [[fiber, "EDGE", "1000 Meters"]])
 arcpy.SplitLineAtPoint_management(fiber, spliceclosure, "Splitfiber" + str(segment), "50 Feet")
 arcpy.Snap_edit(spliceclosure, [["Splitfiber" + str(segment), "EDGE", "1000 Meters"]])
@@ -35,6 +36,21 @@ arcpy.Sort_management("polejoinseq1" + str(segment), "polejoinseq" + str(segment
 arcpy.AddField_management("polejoinseq" + str(segment), "SEQ", "TEXT")
 arcpy.CalculateField_management("polejoinseq" + str(segment), "SEQ", "[OBJECTID]")
 
+#Delete extraneous feature classes 
 for fc in fclist:
  arcpy.Delete_management(fc)
 
+
+
+
+
+ 
+
+	
+	
+	
+	
+	
+
+
+ 
