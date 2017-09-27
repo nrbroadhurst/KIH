@@ -10,12 +10,13 @@ fiber = arcpy.GetParameterAsText(1)
 rcline = arcpy.GetParameterAsText(2)
 poles = arcpy.GetParameterAsText(3)
 segment = arcpy.GetParameterAsText(4)
+fclist = ["Centroidseq" + str(segment), "Fibercentroid" + str(segment), "fiberjoin" + str(segment), "Splitfiber" + str(segment), "Pointtablefiber" + str(segment), "poletable" + str(segment)]
 
-arcpy.env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\ToolBox\Reel_ID.gdb'
+arcpy.env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\ToolBox\Reel_ID_Dustin.gdb'
 arcpy.env.overwriteOutput=True
 
 arcpy.Snap_edit(spliceclosure, [[fiber, "EDGE", "1000 Meters"]])
-arcpy.SplitLineAtPoint_management(fiber, spliceclosure, "Splitfiber" + str(segment), "1000 Meters")
+arcpy.SplitLineAtPoint_management(fiber, spliceclosure, "Splitfiber" + str(segment), "50 Feet")
 arcpy.Snap_edit(spliceclosure, [["Splitfiber" + str(segment), "EDGE", "1000 Meters"]])
 arcpy.FeatureToPoint_management("Splitfiber" + str(segment), "Fibercentroid" + str(segment), "INSIDE")
 arcpy.LocateFeaturesAlongRoutes_lr("Fibercentroid" + str(segment), rcline, "SITE_ID", "1000 Meters", "Pointtablefiber" + str(segment), "SITE_ID POINT fmp")  
@@ -34,19 +35,6 @@ arcpy.Sort_management("polejoinseq1" + str(segment), "polejoinseq" + str(segment
 arcpy.AddField_management("polejoinseq" + str(segment), "SEQ", "TEXT")
 arcpy.CalculateField_management("polejoinseq" + str(segment), "SEQ", "[OBJECTID]")
 
-arcpy.Delete_management("Centroidseq" + str(segment)) 
-arcpy.Delete_management("Fibercentroid" + str(segment)) 
-arcpy.Delete_management("fiberjoin" + str(segment)) 
-arcpy.Delete_management("Splitfiber" + str(segment)) 
+for fc in fclist:
+ arcpy.Delete_management(fc)
 
-
- 
-
-	
-	
-	
-	
-	
-
-
- 
