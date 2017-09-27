@@ -12,7 +12,7 @@ rcline = arcpy.GetParameterAsText(2)
 poles = arcpy.GetParameterAsText(3)
 segment = arcpy.GetParameterAsText(4)
 fclist = ["Centroidseq" + str(segment), "Fibercentroid" + str(segment), "fiberjoin" + str(segment), "Splitfiber" + str(segment), "Pointtablefiber" + str(segment), "poletable" + str(segment)]
-arcpy.env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\ToolBox\Reel_ID_Dustin.gdb'
+arcpy.env.workspace = r'\\na\data\telecom\projects\GIS\Proposal_Kentucky_Nextgen\02GISData\ToolBox\Reel_ID.gdb'
 arcpy.env.overwriteOutput=True
 
 #Assign reel ID and sequence poles
