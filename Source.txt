@@ -320,28 +320,6 @@ for textElement in arcpy.mapping.ListLayoutElements(mxd, "TEXT_ELEMENT"):
          textElement.text = "SEGMENT " + str(segment)
 arcpy.RefreshActiveView
 
-#Create variable for anchorline
-#aLine = 'ANCHORGUY_SITEID_' + str(segment)
-#aLine2 = 'ANCHORGUY_SITEID_' + str(segment) + "_2" 
-#arcpy.AddMessage("#Calculating geometry for lat/long...")
-
-#Calcualte geometry for lat/long
-
-#arcpy.AddMessage("#Calculated geometry for lat/long")
-
-#Make copy of anchorline
-#arcpy.CopyFeatures_management(aLine, aLine2)
-#arcpy.AddMessage("#ANCHORGUY copied")
-
-#Delete Anchor_line_2
-#arcpy.Delete_management(aLine, "FeatureClass")
-#arcpy.AddMessage("#ANCHORGUY deleted")
-#arcpy.AddMessage("#Running BearingDistanceToLine tool...")
-
-#Fix anchorline
-#arcpy.BearingDistanceToLine_management(aLine2, aLine, "LONG", "LAT", "ll", "9002", "ROTATION", "9102", "0", "", "GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]];-400 -400 1000000000;-100000 10000;-100000 10000;8.98315284119522E-09;0.001;0.001;IsHighPrecision")
-#arcpy.AddMessage("#BearingDistanceToLine tool successful")
-
 #Set definition queries 
 arcpy.AddMessage("#Set Definition Queries")
 for lyr in arcpy.mapping.ListLayers(mxd):
